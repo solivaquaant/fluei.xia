@@ -1,0 +1,202 @@
+.pattern-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 3rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+.pattern-container {
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  background: white;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.mdx-content {
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.mdx-h1 {
+  font-family: var(--font-brand);
+  font-size: 3rem;
+  color: var(--primary-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.mdx-h2 {
+  font-family: var(--font-brand);
+  font-size: 1.8rem; 
+  color: var(--primary-dark);
+  margin-top: 2.5rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 2px solid var(--primary-light);
+  display: block;
+  width: 100%;
+}
+
+.mdx-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 16px;
+  margin: 2rem auto;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* TOC sidebar */
+.toc-sidebar {
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overflow-x: hidden; 
+  border-left: 2px solid var(--primary-light);
+  padding-left: 1.5rem;
+}
+
+.toc-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.toc-link {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: block;
+}
+
+.toc-link:hover {
+  color: var(--primary-dark);
+  transform: translateX(5px);
+}
+
+/* Table */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.mdx-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  text-align: left;
+  table-layout: fixed;
+}
+
+.mdx-table th:nth-child(1),
+.mdx-table td:nth-child(1) {
+  width: 80px; 
+}
+
+.mdx-table th:nth-child(3),
+.mdx-table td:nth-child(3) {
+  width: 100px; 
+}
+
+.mdx-table th {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.mdx-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+@media (max-width: 1100px) {
+  .pattern-layout {
+    grid-template-columns: minmax(0, 1fr); /* Prevents wide content from breaking layout */
+    gap: 2rem;
+  }
+  
+  .toc-sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+    border-left: none;
+    border-bottom: 2px solid var(--primary-light);
+    padding-left: 0;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    order: -1; /* Place TOC at the top on tablet/mobile */
+  }
+
+  .toc-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .toc-link {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pattern-container {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    width: auto; /* Allow container to be bounded by grid */
+    margin-top: 0.5rem;
+  }
+  .mdx-h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  .mdx-h2 {
+    font-size: 1.5rem;
+  }
+  .mdx-table {
+    table-layout: fixed; /* Enforce fixed layout to control wrapping */
+    min-width: 0; /* Remove min-width to prevent horizontal scroll */
+  }
+  .mdx-table th:nth-child(1),
+  .mdx-table td:nth-child(1) {
+    width: 60px; /* Slimmer first column for mobile */
+  }
+  .mdx-table th:nth-child(3),
+  .mdx-table td:nth-child(3) {
+    width: 80px; /* Slimmer third column for mobile */
+  }
+  .mdx-table td:nth-child(2) {
+    word-break: break-word; /* Ensure long content wraps in the second column */
+    white-space: normal;
+  }
+}
+
+.loading-pattern {
+  text-align: center;
+  padding: 3rem;
+  color: var(--primary-dark);
+  font-weight: bold;
+}
