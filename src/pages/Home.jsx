@@ -76,9 +76,9 @@ const Home = () => {
                 <div className="story-text">
                   <h3>The name</h3>
                   <p>
-                    @fluei.xia is a reflection of my creative journey - the
-                    delicate balance between <strong>flowing creativity</strong>{" "}
-                    and <strong>structured artistry</strong>.
+                    <strong>@fluei.xia</strong> is a reflection of my creative
+                    journey - the delicate balance between flowing creativity
+                    and structured artistry.
                   </p>
                 </div>
               </motion.div>
@@ -93,8 +93,8 @@ const Home = () => {
                 <div className="story-text">
                   <h3>The philosophy</h3>
                   <p>
-                    Inspired by <strong>October 12th (12/10)</strong>, the
-                    number <strong>121</strong> represents my birth date. 121%
+                    Inspired by <strong>October 12th</strong>, the number{" "}
+                    <strong>121</strong> represents my birth date. 121%
                     symbolizes a surplus of joy. I strive to weave that extra
                     21% of happiness into every stitch, ensuring every recipient
                     feels the warmth and love behind each crochet gift.

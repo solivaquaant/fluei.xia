@@ -1,24 +1,33 @@
 import React from "react";
 import Timeline from "../components/Timeline";
-import { galleryEvents } from "../data/galleryConfig";
 import "./Gallery.css";
 
+const eventConfigs = import.meta.glob("../gallery/*/config.json", {
+  eager: true,
+});
+
 const galleryImages = import.meta.glob(
-  "../gallery/**/*.{png,jpg,jpeg,svg}",
+  "../gallery/**/*.{png,jpg,jpeg,svg,webp}",
   { eager: true },
 );
 
 const Gallery = () => {
-  const processedTimelineData = galleryEvents.map((event) => {
-    const eventImages = Object.keys(galleryImages)
-      .filter((path) => path.includes(`/gallery/${event.folder}/`))
-      .map((path) => galleryImages[path].default);
+  const processedTimelineData = Object.keys(eventConfigs)
+    .map((configPath) => {
+      const config = eventConfigs[configPath];
+      const folderName = configPath.split("/")[2];
 
-    return {
-      ...event,
-      images: eventImages,
-    };
-  });
+      const eventImages = Object.keys(galleryImages)
+        .filter((imagePath) => imagePath.includes(`/gallery/${folderName}/`))
+        .map((imagePath) => galleryImages[imagePath].default);
+
+      return {
+        ...config,
+        folder: folderName,
+        images: eventImages,
+      };
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <div className="gallery-page container">

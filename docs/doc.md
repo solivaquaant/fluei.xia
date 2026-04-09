@@ -6,29 +6,28 @@ This guide explains how to add new stories, photos, and patterns to your website
 
 ## Adding a photo event (Gallery)
 
-The gallery automatically scans for folders and images. To add a new event (e.g., "Winter Bunny 2026"):
+The gallery is now decentralized. To add a new event (e.g., "Winter Bunny 2026"), you only need to work within a single folder.
 
-### 1. Organize your photos
+### 1. Create the event folder
 
 1. Go to `src/gallery/`.
 2. Create a new folder with a simple name (e.g., `winter-2026`).
-3. Put all the photos for that event inside this folder.
+3. Put all your photos inside this folder.
 
-- **Tip**: Aim for high-quality `.webp` or compressed `.jpg` files for the best performance.
+### 2. Create the configuration
 
-### 2. Update the config
+1. Inside your new folder (`src/gallery/winter-2026/`), create a file named `config.json`.
+2. Add the event details in this format:
 
-1. Open `src/data/galleryConfig.js`.
-2. Add a new object to the `galleryEvents` array:
-
-```javascript
+```json
 {
-  date: 'December 2026',
-  title: 'Winter Bunny Collection',
-  description: 'A cozy set of bunnies inspired by the first snowfall.',
-  folder: 'winter-2026'
+  "date": "December 2026",
+  "title": "Winter Bunny Collection",
+  "description": "A cozy set of bunnies inspired by the first snowfall."
 }
 ```
+
+That's it! The website will automatically detect the new folder and add it to your timeline.
 
 ---
 
