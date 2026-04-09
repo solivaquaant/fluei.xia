@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import remarkMdxImages from 'remark-mdx-images'
 
 export default defineConfig({
+  base: '/',
   server: {
     allowedHosts: [
       'edwin-gluelike-anjanette.ngrok-free.dev'
