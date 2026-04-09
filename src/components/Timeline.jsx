@@ -36,7 +36,7 @@ const TimelineItem = ({ item, index }) => {
         title={isOpen ? "Click to collapse" : "Click to expand"}
       ></div>
       <div className="timeline-content">
-        <span className="timeline-date">{item.date}</span>
+        <span className="timeline-date">{item.formattedDate || item.date}</span>
         <h3 className="timeline-title">{item.title}</h3>
         
         <motion.div

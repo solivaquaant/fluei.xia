@@ -1,5 +1,6 @@
 import React from "react";
 import Timeline from "../components/Timeline";
+import { parseDate, formatDisplayDate } from "../utils/dateUtils";
 import "./Gallery.css";
 
 const eventConfigs = import.meta.glob("../gallery/*/config.json", {
@@ -25,13 +26,17 @@ const Gallery = () => {
         .filter((imagePath) => imagePath.includes(`/gallery/${folderName}/`))
         .map((imagePath) => galleryImages[imagePath].default);
 
+      const parsedDate = parseDate(config.date);
+
       return {
         ...config,
         folder: folderName,
         images: eventImages,
+        parsedDate, // Used for sorting
+        formattedDate: formatDisplayDate(parsedDate), // Used for display
       };
     })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    .sort((a, b) => b.parsedDate - a.parsedDate);
 
   return (
     <div className="gallery-page container">
