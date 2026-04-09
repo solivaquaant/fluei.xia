@@ -1,12 +1,17 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import Lightbox from "./Lightbox";
 import "./Timeline.css";
 
-const TimelineImage = ({ src, alt }) => {
+const TimelineImage = ({ src, alt, onClick }) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <div className={`img-wrapper ${!isLoaded ? "shimmer" : ""}`}>
+    <div 
+      className={`img-wrapper ${!isLoaded ? "shimmer" : ""}`} 
+      onClick={onClick}
+      style={{ cursor: "zoom-in" }}
+    >
       <motion.img
         src={src}
         alt={alt}
@@ -22,6 +27,17 @@ const TimelineImage = ({ src, alt }) => {
 
 const TimelineItem = ({ item, index }) => {
   const [isOpen, setIsOpen] = React.useState(true);
+  const [activeImageIndex, setActiveImageIndex] = React.useState(null);
+
+  const nextImage = (e) => {
+    e?.stopPropagation();
+    setActiveImageIndex((prev) => (prev + 1) % item.images.length);
+  };
+
+  const prevImage = (e) => {
+    e?.stopPropagation();
+    setActiveImageIndex((prev) => (prev - 1 + item.images.length) % item.images.length);
+  };
 
   return (
     <motion.div
@@ -53,11 +69,28 @@ const TimelineItem = ({ item, index }) => {
 
           <div className="timeline-images">
             {item.images.map((img, i) => (
-              <TimelineImage key={i} src={img} alt={`Work from ${item.date}`} />
+              <TimelineImage 
+                key={i} 
+                src={img} 
+                alt={`Work from ${item.date}`} 
+                onClick={() => setActiveImageIndex(i)}
+              />
             ))}
           </div>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {activeImageIndex !== null && (
+          <Lightbox
+            images={item.images}
+            activeIndex={activeImageIndex}
+            onClose={() => setActiveImageIndex(null)}
+            onNext={nextImage}
+            onPrev={prevImage}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
