@@ -28,6 +28,14 @@ const Patterns = () => {
     ? patternsList.find((p) => p.slug === slug)
     : null;
 
+  React.useEffect(() => {
+    if (selectedPattern) {
+      document.title = `@fluei.xia | ${selectedPattern.title}`;
+    } else {
+      document.title = "@fluei.xia | Patterns";
+    }
+  }, [selectedPattern]);
+
   return (
     <div className="patterns-page container">
       {!slug && (

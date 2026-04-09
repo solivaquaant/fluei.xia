@@ -12,6 +12,10 @@ const galleryImages = import.meta.glob(
 );
 
 const Gallery = () => {
+  React.useEffect(() => {
+    document.title = "@fluei.xia | Gallery";
+  }, []);
+
   const processedTimelineData = Object.keys(eventConfigs)
     .map((configPath) => {
       const config = eventConfigs[configPath];

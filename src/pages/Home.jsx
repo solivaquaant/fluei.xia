@@ -4,6 +4,10 @@ import transparentLogo from "../assets/logo/Logo-transparent.png";
 import "./Home.css";
 
 const Home = () => {
+  React.useEffect(() => {
+    document.title = "@fluei.xia | Home";
+  }, []);
+
   return (
     <div className="home-page">
       <section className="hero container">
@@ -154,6 +158,80 @@ const Home = () => {
                 Since Oct 12th
               </motion.div>
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="design-essence container">
+        <div className="design-divider-wrap">
+          <div className="design-divider-line"></div>
+          <div className="design-divider-sparkle">✦</div>
+          <div className="design-divider-line"></div>
+        </div>
+
+        <motion.div
+          className="section-header centered"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}>
+          <h2 className="section-title">Design essence</h2>
+          <p className="section-subtitle">The visual language of @fluei.xia</p>
+        </motion.div>
+
+        <div className="design-grid">
+          <motion.div
+            className="palette-box glass"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}>
+            <h3>Color palette</h3>
+            <div className="colors-list">
+              <div className="color-item">
+                <div
+                  className="color-swatch"
+                  style={{ backgroundColor: "var(--primary-dark)" }}></div>
+                <div className="color-info">
+                  <span className="color-name">Dark</span>
+                  <span className="color-hex">#FF85A2</span>
+                </div>
+              </div>
+              <div className="color-item">
+                <div
+                  className="color-swatch"
+                  style={{ backgroundColor: "var(--primary)" }}></div>
+                <div className="color-info">
+                  <span className="color-name">Primary</span>
+                  <span className="color-hex">#FFB3C6</span>
+                </div>
+              </div>
+              <div className="color-item">
+                <div
+                  className="color-swatch"
+                  style={{ backgroundColor: "var(--primary-light)" }}></div>
+                <div className="color-info">
+                  <span className="color-name">Light</span>
+                  <span className="color-hex">#FFD1DC</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            className="typography-box glass"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}>
+            <h3>Typography</h3>
+            <div className="fonts-list">
+              <div className="font-item">
+                <span className="font-label">Heading font</span>
+                <span className="font-example-serif">Playfair Display</span>
+              </div>
+              <div className="font-item">
+                <span className="font-label">Body font</span>
+                <span className="font-example-sans">Quicksand</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
